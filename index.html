@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GymScript</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* Custom highlight style */
+    .highlight {
+      background-color: #bfdbfe; /* Tailwind blue-200 */
+      border: 4px solid #2563eb; /* Tailwind blue-600 */
+      border-radius: 0.75rem; /* match rounded-xl */
+    }
+  </style>
+</head>
+<body class="bg-blue-100 text-gray-800 font-sans">
+
+  <!-- Header: title left, nav right -->
+  <header class="bg-white shadow-md">
+    <div class="max-w-6xl mx-auto p-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">🏋️ GymScript</h1>
+      <nav class="space-x-4">
+        <a href="pages/legs.html" id="legs" class="text-gray-700 hover:text-blue-500">Legs</a>
+        <a href="pages/push.html" id="push" class="text-gray-700 hover:text-blue-500">Push</a>
+        <a href="pages/pull.html" id="pull" class="text-gray-700 hover:text-blue-500">Pull</a>
+        <a href="pages/abs.html" id="abs" class="text-gray-700 hover:text-blue-500">Abs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto mt-10 p-4">
+    <h2 class="text-3xl font-bold mb-4">Your Weekly Workout Plan</h2>
+    <p class="mb-6 text-lg">
+      Welcome to <strong>GymScript</strong> – a structured Push / Pull / Legs + Abs training program designed to build strength and track your progress. Click on a section above to view each day’s detailed workout plan.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div id="legsBox" class="bg-white p-4 rounded-xl shadow">
+        <h3 class="font-bold text-xl mb-2">Sunday</h3>
+        <p>Legs + Forearms + Abs</p>
+      </div>
+      <div id="pushBox" class="bg-white p-4 rounded-xl shadow">
+        <h3 class="font-bold text-xl mb-2">Monday</h3>
+        <p>Push Day (Chest, Shoulders, Triceps)</p>
+      </div>
+      <div id="pullBox" class="bg-white p-4 rounded-xl shadow">
+        <h3 class="font-bold text-xl mb-2">Tuesday</h3>
+        <p>Pull Day (Back, Biceps)</p>
+      </div>
+      <div id="absBox" class="bg-white p-4 rounded-xl shadow">
+        <h3 class="font-bold text-xl mb-2">Wednesday</h3>
+        <p>Active Recovery / Abs</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-10 text-center text-sm text-gray-500">
+    © 2025 GymScript. Built with 💪 and 💻 Kalyan.
+  </footer>
+
+  <script>
+    // Get current day number (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    const today = new Date().getDay();
+
+    // Map day number to workout box id on the homepage
+    const workoutMap = {
+      0: 'legsBox',  // Sunday
+      1: 'pushBox',  // Monday
+      2: 'pullBox',  // Tuesday
+      3: 'absBox',   // Wednesday
+      // no highlights for Thursday(4), Friday(5), Saturday(6)
+    };
+
+    const todayBoxId = workoutMap[today];
+
+    if (todayBoxId) {
+      // Remove highlight class from all boxes (just in case)
+      ['legsBox', 'pushBox', 'pullBox', 'absBox'].forEach(id => {
+        document.getElementById(id).classList.remove('highlight');
+      });
+
+      // Add highlight class to today's box
+      const todayBox = document.getElementById(todayBoxId);
+      if (todayBox) {
+        todayBox.classList.add('highlight');
+      }
+    }
+  </script>
+
+</body>
+</html>
